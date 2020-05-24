@@ -2,6 +2,7 @@
 
 ### Set .env file
 
+* Run ```docker-compose -f "docker-compose.yml" up -d --build``` at root folder to start a MongoDB container.
 * Create a .env file at /server
 * Copy .env.example content to the new .env file
 
