@@ -5,6 +5,7 @@ import TodoController from "../controllers/todo.controller.ts";
 const router = new Router();
 
 router
+    .post("/todo", TodoController.store)
     .get("/todo", TodoController.index)
     .get("/todo/:id", TodoController.show)
     .delete("/todo/:id", TodoController.destroy)
