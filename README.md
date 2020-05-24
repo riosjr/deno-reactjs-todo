@@ -12,7 +12,7 @@ cd server
 deno run --allow-net --allow-env --allow-read --allow-write --allow-plugin --unstable app.ts
 ```
 
-NOTE: the --unstable flag is needed because of the deno_mong package.
+NOTE: the --unstable flag is needed because of the deno_mongo package.
 
 ## Main Deno Packages
 
