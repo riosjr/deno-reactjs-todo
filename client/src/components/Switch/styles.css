@@ -1,0 +1,15 @@
+input:checked ~ .btn-change::before {
+  transition: 0.3s;
+  transform: translateX(23px);
+}
+
+.btn-change::before {
+  content: '';
+  display: block;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: 0.3s;
+  transform: translateX(0);
+}
