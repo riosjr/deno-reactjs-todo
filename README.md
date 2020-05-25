@@ -15,6 +15,14 @@ deno run --allow-net --allow-env --allow-read --allow-write --allow-plugin --uns
 
 NOTE: the --unstable flag is needed because of the deno_mongo package.
 
+### Run the client
+
+```
+cd client
+yarn start
+```
+
+
 ## Main Deno Packages
 
 * [Oak](https://deno.land/x/oak) - A middleware framework for Deno's http server, including a router middleware.
