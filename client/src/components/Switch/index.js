@@ -1,14 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './styles.css';
 
 const Switch = ({ label, ...other }) => {
   const [toggleStyle, setToggleStyle] = useState('bg-red-400');
   const inputRef = useRef();
   console.log(other);
-  const onToggle = () => {
+ 
+  useEffect(() => {
     const _style = inputRef.current.checked ? 'bg-green-400' : 'bg-red-400';
     setToggleStyle(_style);
-  };
+  }, [inputRef?.current?.checked]);
   return (
     <div className={'btn-status rounded-full ' + toggleStyle}>
       <input
@@ -18,7 +19,7 @@ const Switch = ({ label, ...other }) => {
         {...other}
         className="hidden"
         ref={inputRef}
-        onChange={() => onToggle()}
+        //onChange={() => onToggle()}
       />
       <label
         htmlFor={other.id}

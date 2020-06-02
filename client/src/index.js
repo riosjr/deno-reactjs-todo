@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom';
 import Home from './pages/Home';
 import * as serviceWorker from './serviceWorker';
 
-import './assets/css/main.css'
+import { AppContextProvider } from './store/AppContext';
+
+import './assets/css/main.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <AppContextProvider>
+      <Home />
+    </AppContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
