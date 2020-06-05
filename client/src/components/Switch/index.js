@@ -4,12 +4,11 @@ import './styles.css';
 const Switch = ({ label, ...other }) => {
   const [toggleStyle, setToggleStyle] = useState('bg-red-400');
   const inputRef = useRef();
-  //console.log(other);
 
   useEffect(() => {
     const _style = inputRef.current.checked ? 'bg-green-400' : 'bg-red-400';
     setToggleStyle(_style);
-  }, [inputRef.current?.checked]);
+  }, [other.checked]);
 
   return (
     <div className={'btn-status rounded-full ' + toggleStyle}>
