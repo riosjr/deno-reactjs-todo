@@ -31,7 +31,8 @@ function Home() {
 
     setState({
       ...state,
-      openModal: true
+      openModal: true,
+      currentTodo: null
     })
   };
   return (

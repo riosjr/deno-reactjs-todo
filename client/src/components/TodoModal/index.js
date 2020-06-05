@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Modal from 'react-awesome-modal';
 
 import { AppContext } from '../../store/AppContext';
@@ -17,18 +17,35 @@ const TodoModal = () => {
     done: false,
   });
   const [titleError, setTitleError] = useState('At least 3 characters.');
+
+  useEffect(() => {
+    const { currentTodo } = state;
+    if (currentTodo) {
+      setTodo({
+        ...currentTodo,
+      });
+    }
+  }, [state]);
+
+  useEffect(() => {
+    if (todo.title.length < 3) {
+      setTitleError('At least 3 characters.');
+    } else {
+      setTitleError(null);
+    }
+  }, [todo.title]);
   const clearFields = () => {
     setTodo({
       title: '',
       description: '',
       done: false,
     });
-    setTitleError('At least 3 characters.');
   };
   const closeModal = () => {
     setState({
       ...state,
       openModal: false,
+      currentTodo: null
     });
     clearFields();
   };
@@ -38,14 +55,6 @@ const TodoModal = () => {
       ...todo,
       [field]: value,
     });
-
-    if (field === 'title') {
-      if (value.length < 3) {
-        setTitleError('At least 3 characters.');
-      } else {
-        setTitleError(null);
-      }
-    }
   };
 
   const onSave = () => {
@@ -74,7 +83,7 @@ const TodoModal = () => {
   return (
     <Modal
       visible={openModal}
-      width="400"
+      //width="400"
       //height="320"
       effect="fadeInUp"
       onClickAway={() => closeModal()}
@@ -84,10 +93,10 @@ const TodoModal = () => {
         <TextInput
           label="Title"
           type="input"
-          autoFocus
           error={titleError}
           value={todo.title}
           onChange={(e) => changeTodo('title', e.target.value)}
+          autoFocus
         ></TextInput>
         <TextInput
           label="Description"

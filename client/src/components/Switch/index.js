@@ -4,22 +4,23 @@ import './styles.css';
 const Switch = ({ label, ...other }) => {
   const [toggleStyle, setToggleStyle] = useState('bg-red-400');
   const inputRef = useRef();
-  console.log(other);
- 
+  //console.log(other);
+
   useEffect(() => {
     const _style = inputRef.current.checked ? 'bg-green-400' : 'bg-red-400';
     setToggleStyle(_style);
-  }, [inputRef?.current?.checked]);
+  }, [inputRef.current?.checked]);
+
   return (
     <div className={'btn-status rounded-full ' + toggleStyle}>
       <input
         type="checkbox"
         /* name="checkbox"
           id="owa" */
-        {...other}
+
         className="hidden"
         ref={inputRef}
-        //onChange={() => onToggle()}
+        {...other}
       />
       <label
         htmlFor={other.id}

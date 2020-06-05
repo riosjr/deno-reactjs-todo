@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import { AppContext } from '../../store/AppContext';
 import Switch from '../Switch';
 
-const TodoItem = () => {};
-
 const TodoList = () => {
   const [state, setState] = useContext(AppContext);
   const { todos } = state;
@@ -30,19 +28,27 @@ const TodoList = () => {
       },
     });
   };
+
+  const handleTodoClick = (todo) => {
+    setState({
+      ...state,
+      currentTodo: todo,
+      openModal: true,
+    });
+  };
   return (
     <div className="p-4">
       {Object.keys(todos).length === 0 && (
         <div className="mt-10 w-64 bg-gray-200 text-gray-500 h-32 mx-auto flex items-center justify-center rounded-lg">
-          There are no To-Dos ...
+          There are no Todos ...
         </div>
       )}
       {Object.keys(todos).map((id) => (
         <div
           key={id}
-          className="relative flex flex-row bg-gray-200 mb-2 px-4 py-10 rounded-lg items-center max-w-sm mx-auto shadow-md border-l-8 border-red-300 cursor-pointer"
+          className={`relative flex flex-row bg-gray-200 mb-2 px-4 py-10 rounded-lg items-center max-w-sm mx-auto shadow-md border-l-8 ${todos[id].done?'border-green-300':'border-red-300'}`}
         >
-          <div className="flex-1">
+          <div className="flex-1 cursor-pointer" onClick={() => handleTodoClick(todos[id])}>
             <strong
               className={todos[id].done ? 'line-through text-gray-500' : ''}
             >
